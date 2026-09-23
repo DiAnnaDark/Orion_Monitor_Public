@@ -1,0 +1,13 @@
+[project]
+name = "orion-monitor-public"
+version = "0.1.0"
+description = "Read-only Linux production monitoring and Telegram alerting service."
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+orion-monitor = "orion_monitor.main:main"
+
+[tool.setuptools.packages.find]
+include = ["orion_monitor*"]
+exclude = ["tests*", "deploy*", "docs*"]
