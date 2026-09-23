@@ -1,0 +1,18 @@
+[Unit]
+Description=Read-only application monitor and Telegram notifier
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/app-monitor
+EnvironmentFile=/etc/app-monitor.env
+ExecStart=/opt/app-monitor/.venv/bin/python -m orion_monitor.main
+Restart=always
+RestartSec=5
+
+# Intentionally independent from the observed application.
+# Do not add Requires=/PartOf= relationships to observed services.
+
+[Install]
+WantedBy=multi-user.target
